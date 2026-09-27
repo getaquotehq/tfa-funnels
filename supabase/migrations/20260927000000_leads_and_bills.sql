@@ -19,7 +19,7 @@ create table if not exists public.leads (
   bill_filename   text check (char_length(bill_filename) <= 200),
   source          text check (char_length(source) <= 100),
   tracking        jsonb not null default '{}'::jsonb check (pg_column_size(tracking) < 4000),
-  -- filled in by the lead-to-pipedrive edge function
+  -- optional: for the Make.com Pipedrive scenario to mark rows as synced
   pipedrive_person_id bigint,
   pipedrive_lead_id   text,
   synced_at           timestamptz,

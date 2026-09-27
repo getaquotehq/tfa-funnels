@@ -541,13 +541,13 @@
 /* ---- Supabase config: paste your project URL and publishable (anon) key ----
    The publishable key is safe in the browser. RLS only lets it INSERT leads
    and upload bills, never read them back. Never put the service_role key here. */
-const SUPABASE_URL = 'https://YOUR-PROJECT-REF.supabase.co';
-const SUPABASE_KEY = 'YOUR-PUBLISHABLE-OR-ANON-KEY';
+const SUPABASE_URL = 'https://oguiejpjkdtnqhxhgwht.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ndWllanBqa2R0bnFoeGhnd2h0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTA0NTk2NjIsImV4cCI6MjEwNjAzNTY2Mn0.Jq0OmXoI5jhLjxFndRC_vT3YKJVL9bhf6yeEHYEFs5Q';
 const BILL_BUCKET  = 'bills';
 const MAX_BILL_MB  = 10;
 const LEAD_SOURCE  = 'FB - Energy Health Check LP';
 
-const db = (window.supabase && !SUPABASE_URL.includes('YOUR-PROJECT-REF'))
+const db = (window.supabase && SUPABASE_URL && SUPABASE_KEY)
   ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } })
   : null;
 
