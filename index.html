@@ -709,7 +709,9 @@ form.addEventListener('submit', async (e)=>{
     let billPath = null;
     if(chosenFile){
       const ext = (chosenFile.name.split('.').pop() || 'bin').toLowerCase().replace(/[^a-z0-9]/g,'');
-      const path = `${new Date().toISOString().slice(0,10)}/${uid()}.${ext}`;
+      /* name the file after the lead so it's easy to spot in Storage, e.g. 2026-09-27/jane-smith-5152-3f2a9c1e.pdf */
+      const who = name.toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40) || 'lead';
+      const path = `${new Date().toISOString().slice(0,10)}/${who}-${postcode}-${uid().slice(0,8)}.${ext}`;
       const up = await db.storage.from(BILL_BUCKET).upload(path, chosenFile, {
         contentType: chosenFile.type, upsert: false
       });
