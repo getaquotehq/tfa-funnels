@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adelaide Hills Home Energy Health Check | TFA Solar</title>
+<meta name="description" content="Before you spend thousands changing your solar or adding a battery, understand what you already have. Book a free Adelaide Hills Home Energy Health Check with TFA Solar. 20+ years local, family owned." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --green:#00843b;
+    --green-dark:#016c31;
+    --amber:#fbae17;
+    --amber-dark:#e39c05;
+    --ink:#0f1a14;
+    --ink-soft:#3a463f;
+    --line:#e3e8e4;
+    --bg:#ffffff;
+    --bg-soft:#f5f8f6;
+    --dark:#0d2018;
+    --radius:14px;
+    --maxw:1080px;
+    --shadow:0 10px 30px rgba(15,26,20,.08);
+    --shadow-lg:0 20px 50px rgba(15,26,20,.14);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  svg{display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--amber);color:var(--ink);
+    font-weight:800;font-size:1.05rem;
+    padding:16px 28px;border-radius:12px;border:none;cursor:pointer;
+    text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+    box-shadow:0 6px 18px rgba(251,174,23,.35);
+  }
+  .btn:hover{background:var(--amber-dark);transform:translateY(-2px);box-shadow:0 10px 24px rgba(251,174,23,.45)}
+  .btn svg{width:18px;height:18px}
+  .eyebrow{
+    display:inline-block;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+    font-size:.78rem;color:var(--green);background:rgba(0,132,59,.08);
+    padding:6px 12px;border-radius:99px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
+  }
+  .header-in{display:flex;align-items:center;justify-content:space-between;height:70px}
+  /* LOGO PLACEHOLDER — swap this block for the real TFA Solar logo <img> */
+  .logo-placeholder{
+    display:flex;align-items:center;justify-content:center;
+    width:150px;height:44px;border:2px dashed var(--green);border-radius:8px;
+    color:var(--green);font-weight:700;font-size:.8rem;letter-spacing:.03em;
+    background:rgba(0,132,59,.04);text-align:center;
+  }
+  .header-cta{display:flex;align-items:center;gap:18px}
+  .header-phone{display:flex;align-items:center;gap:7px;font-weight:700;color:var(--ink);text-decoration:none;font-size:.98rem}
+  .header-phone svg{width:16px;height:16px;color:var(--green)}
+  .header-btn{
+    background:var(--green);color:#fff;font-weight:700;font-size:.92rem;
+    padding:11px 20px;border-radius:10px;text-decoration:none;transition:background .15s;
+  }
+  .header-btn:hover{background:var(--green-dark)}
+  @media(max-width:620px){.header-phone{display:none}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:linear-gradient(160deg,#f5f8f6 0%,#ffffff 60%);
+    padding:56px 0 40px;position:relative;overflow:hidden;
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  .hero h1{
+    font-size:clamp(2.1rem,4.6vw,3.35rem);line-height:1.08;font-weight:900;
+    letter-spacing:-.02em;margin:18px 0 18px;
+  }
+  .hero h1 .hl{color:var(--green)}
+  .hero p.lead{font-size:1.18rem;color:var(--ink-soft);max-width:540px;margin-bottom:26px}
+  .hero-cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  .hero-note{font-size:.9rem;color:var(--ink-soft)}
+  .hero-note strong{color:var(--ink)}
+  .hero-visual{
+    background:var(--dark);border-radius:20px;padding:34px;color:#fff;
+    box-shadow:var(--shadow-lg);position:relative;
+  }
+  .hero-visual h3{font-size:1.15rem;font-weight:800;margin-bottom:6px}
+  .hero-visual .sub{font-size:.9rem;color:#b9c9c0;margin-bottom:22px}
+  .checklist{list-style:none;display:flex;flex-direction:column;gap:13px}
+  .checklist li{display:flex;gap:12px;align-items:flex-start;font-size:.98rem}
+  .tick{
+    flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:var(--green);
+    display:flex;align-items:center;justify-content:center;color:#fff;margin-top:1px;
+  }
+  .tick svg{width:12px;height:12px}
+  @media(max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:32px}
+    .hero-visual{order:-1}
+  }
+
+  /* ---------- SITUATION ROW ---------- */
+  .card-ic{color:var(--green);margin-bottom:12px;display:flex;justify-content:center}
+  .card-ic svg{width:32px;height:32px}
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust-strip{background:var(--dark);color:#fff;padding:20px 0}
+  .trust-in{display:flex;align-items:center;justify-content:center;gap:38px;flex-wrap:wrap;text-align:center}
+  .trust-item{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.96rem}
+  .trust-item .ic{color:var(--amber);display:flex}
+  .trust-item .ic svg{width:22px;height:22px}
+  .stars{color:var(--amber);letter-spacing:2px}
+  .trust-item .muted{color:#b9c9c0;font-weight:500}
+  @media(max-width:640px){.trust-in{gap:16px 24px}.trust-item{font-size:.85rem}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section.block{padding:64px 0}
+  .section-head{text-align:center;max-width:680px;margin:0 auto 44px}
+  .section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:850;letter-spacing:-.02em;line-height:1.15;margin:14px 0 14px}
+  .section-head p{font-size:1.1rem;color:var(--ink-soft)}
+
+  /* ---------- EDUCATION / PROBLEM ---------- */
+  .edu{background:var(--bg-soft)}
+  .edu-quote{
+    max-width:820px;margin:0 auto;text-align:center;
+    font-size:clamp(1.5rem,3vw,2.1rem);font-weight:800;line-height:1.3;letter-spacing:-.01em;
+  }
+  .edu-quote .amber{color:var(--amber-dark)}
+  .edu-sub{max-width:640px;margin:22px auto 0;text-align:center;font-size:1.1rem;color:var(--ink-soft)}
+
+  /* ---------- WHAT WE CHECK ---------- */
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;
+    box-shadow:var(--shadow);transition:transform .15s,box-shadow .15s;
+  }
+  .card:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .card .num{
+    width:40px;height:40px;border-radius:10px;background:rgba(0,132,59,.1);color:var(--green);
+    display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;margin-bottom:14px;
+  }
+  .card h4{font-size:1.12rem;font-weight:750;margin-bottom:8px}
+  .card p{font-size:.96rem;color:var(--ink-soft)}
+  @media(max-width:860px){.cards{grid-template-columns:1fr}}
+
+  /* ---------- 44c HIGHLIGHT ---------- */
+  .highlight{background:var(--green);color:#fff}
+  .highlight .section-head h2{color:#fff}
+  .hl-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:40px;align-items:center}
+  .hl-num{font-size:clamp(4rem,12vw,8rem);font-weight:900;color:var(--amber);line-height:.9;letter-spacing:-.03em}
+  .hl-num small{display:block;font-size:1.05rem;color:#cfe6d8;font-weight:600;letter-spacing:.02em;margin-top:10px}
+  .highlight h3{font-size:1.5rem;font-weight:800;margin-bottom:14px}
+  .highlight p{font-size:1.08rem;color:#e2f0e8;margin-bottom:14px}
+  .highlight .warn{
+    display:flex;gap:12px;align-items:flex-start;
+    background:rgba(255,255,255,.12);border-left:4px solid var(--amber);
+    padding:16px 18px;border-radius:8px;font-size:1rem;color:#fff;
+  }
+  .highlight .warn svg{width:22px;height:22px;flex:0 0 22px;color:var(--amber);margin-top:1px}
+  @media(max-width:760px){.hl-grid{grid-template-columns:1fr;gap:20px;text-align:center}.highlight .warn{text-align:left}}
+
+  /* ---------- FORM ---------- */
+  .form-section{background:var(--bg-soft)}
+  .form-card{
+    max-width:680px;margin:0 auto;background:#fff;border-radius:20px;
+    box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--line);
+  }
+  .form-top{background:var(--dark);color:#fff;padding:28px 32px}
+  .form-top h3{font-size:1.4rem;font-weight:850;margin-bottom:4px}
+  .form-top p{color:#b9c9c0;font-size:.96rem}
+  .progress{height:6px;background:rgba(255,255,255,.15);border-radius:99px;margin-top:20px;overflow:hidden}
+  .progress-bar{height:100%;width:20%;background:var(--amber);border-radius:99px;transition:width .35s ease}
+  .form-body{padding:32px}
+  .step{display:none;animation:fade .3s ease}
+  .step.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .step-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--green);margin-bottom:6px}
+  .step h4{font-size:1.3rem;font-weight:800;margin-bottom:20px;letter-spacing:-.01em}
+  .options{display:flex;flex-direction:column;gap:12px}
+  .opt{
+    display:flex;align-items:center;gap:14px;border:2px solid var(--line);border-radius:12px;
+    padding:16px 18px;cursor:pointer;transition:all .15s;font-weight:600;font-size:1rem;
+  }
+  .opt:hover{border-color:var(--green);background:rgba(0,132,59,.03)}
+  .opt input{accent-color:var(--green);width:20px;height:20px;flex:0 0 auto}
+  .opt.selected{border-color:var(--green);background:rgba(0,132,59,.06)}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-weight:650;font-size:.95rem;margin-bottom:7px}
+  .field input{
+    width:100%;padding:14px 16px;border:2px solid var(--line);border-radius:11px;font-size:1rem;
+    font-family:inherit;transition:border-color .15s;
+  }
+  .field input:focus{outline:none;border-color:var(--green)}
+  .field .hint{font-size:.82rem;color:var(--ink-soft);margin-top:5px}
+  .upload{
+    display:block;border:2px dashed var(--green);border-radius:12px;padding:26px;text-align:center;cursor:pointer;
+    background:rgba(0,132,59,.03);transition:background .15s;
+  }
+  .upload:hover{background:rgba(0,132,59,.07)}
+  .upload .ic{color:var(--green);display:flex;justify-content:center;margin-bottom:10px}
+  .upload .ic svg{width:34px;height:34px}
+  .upload strong{color:var(--green)}
+  .upload .fname{margin-top:10px;font-size:.9rem;color:var(--ink);font-weight:600}
+  .form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:14px}
+  .btn-back{background:none;border:none;color:var(--ink-soft);font-weight:600;cursor:pointer;font-size:.95rem;padding:10px}
+  .btn-back:hover{color:var(--ink)}
+  .btn-next{background:var(--green);color:#fff;box-shadow:0 6px 18px rgba(0,132,59,.3)}
+  .btn-next:hover{background:var(--green-dark);box-shadow:0 10px 24px rgba(0,132,59,.4)}
+  .err{color:#c0392b;font-size:.88rem;margin-top:10px;font-weight:600;display:none}
+
+  /* disqualify + success screens */
+  .screen{display:none;text-align:center;padding:20px 8px}
+  .screen.active{display:block;animation:fade .3s ease}
+  .screen .big-ic{display:flex;justify-content:center;margin-bottom:14px}
+  .screen .big-ic svg{width:54px;height:54px}
+  .screen h4{font-size:1.5rem;font-weight:850;margin-bottom:12px}
+  .screen p{color:var(--ink-soft);font-size:1.05rem;max-width:440px;margin:0 auto 8px}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--dark);color:#fff;padding:44px 0 30px}
+  .foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
+  .foot-logo{width:150px;height:44px;border:2px dashed rgba(255,255,255,.4);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:.75rem;font-weight:700}
+  .foot-col h5{font-size:.9rem;font-weight:750;margin-bottom:10px;color:var(--amber)}
+  .foot-col p,.foot-col a{font-size:.9rem;color:#b9c9c0;text-decoration:none;display:block;margin-bottom:6px}
+  .foot-col a:hover{color:#fff}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:30px;padding-top:20px;font-size:.8rem;color:#8ba396;text-align:center;line-height:1.6}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="wrap header-in">
+    <!-- LOGO PLACEHOLDER -->
+    <div class="logo-placeholder">TFA SOLAR<br>LOGO</div>
+    <div class="header-cta">
+      <a href="tel:0883900096" class="header-phone">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        (08) 8390 0096
+      </a>
+      <a href="#form" class="header-btn">Book Health Check</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Adelaide Hills • Free Assessment</span>
+      <h1>Old solar? Still buying power at night? On the old 44c tariff? <span class="hl">Start with the numbers.</span></h1>
+      <p class="lead">Book a free Adelaide Hills Home Energy Health Check. One of our local specialists reviews your existing solar, bills, usage and feed-in tariff, then explains, plainly, whether a battery, an upgrade, or leaving things as they are makes the most sense for your home.</p>
+      <div class="hero-cta-row">
+        <a href="#form" class="btn">Book a Free Energy Health Check
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <div class="hero-note"><strong>No pressure sales.</strong><br>If your setup is fine as-is, we'll tell you.</div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <h3>What your Health Check covers</h3>
+      <div class="sub">A proper look at your whole setup, not a sales pitch.</div>
+      <ul class="checklist">
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> How your current solar is really performing</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Your usage, bills and current feed-in tariff</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Whether a battery would actually pay off for you</li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span> Whether to keep, upgrade, or leave your system alone</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST STRIP ================= -->
+<div class="trust-strip">
+  <div class="wrap trust-in">
+    <div class="trust-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span> 20+ Years in SA</div>
+    <div class="trust-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span> In-House Install Team</div>
+    <div class="trust-item"><span class="stars">★★★★★</span> <span>4.9 <span class="muted">· 127 Google Reviews</span></span></div>
+    <div class="trust-item"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span> Local &amp; Family Owned</div>
+  </div>
+</div>
+
+<!-- ================= EDUCATION ================= -->
+<section class="block edu">
+  <div class="wrap">
+    <p class="edu-quote">Most Adelaide Hills homeowners have <span class="amber">no idea</span> how their solar is really performing, or whether they're leaving money on the table.</p>
+    <p class="edu-sub">Solar tech, tariffs and battery economics have changed enormously in the last decade. If your system's a few years old, the smartest first step isn't buying more. It's understanding exactly what you've got.</p>
+  </div>
+</section>
+
+<!-- ================= WHAT WE CHECK ================= -->
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The Health Check</span>
+      <h2>A complete picture of your home energy, for free</h2>
+      <p>We assess first, then advise. Here's what one of our specialists goes through with you.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><div class="num">1</div><h4>System performance &amp; age</h4><p>How much your panels are actually producing now versus what they should be, and how your system has aged.</p></div>
+      <div class="card"><div class="num">2</div><h4>Bills, usage &amp; tariff</h4><p>What you're paying, how you use power across the day, and the feed-in tariff you're currently on.</p></div>
+      <div class="card"><div class="num">3</div><h4>Import &amp; export</h4><p>How much you're buying from the grid versus exporting, the key to whether a battery makes sense.</p></div>
+      <div class="card"><div class="num">4</div><h4>Battery viability</h4><p>An honest look at whether storage would actually pay off for your household, or whether it wouldn't.</p></div>
+      <div class="card"><div class="num">5</div><h4>Keep, upgrade or leave it</h4><p>A straight recommendation. Sometimes the best move is to change nothing, and we'll say so.</p></div>
+      <div class="card"><div class="num">6</div><h4>Your options, explained plainly</h4><p>No jargon, no pressure. Just the numbers and what they mean for your home.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 44c HIGHLIGHT ================= -->
+<section class="block highlight">
+  <div class="wrap">
+    <div class="hl-grid">
+      <div class="hl-num">44c<small>legacy feed-in tariff</small></div>
+      <div>
+        <h3>Still on the old 44c solar feed-in tariff?</h3>
+        <p>Many long-time Adelaide Hills homeowners are, and it's one of the most valuable things you can have. The SA scheme runs until 30 June 2028 for eligible systems.</p>
+        <div class="warn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Important: upgrading or enlarging your system can mean <strong>losing your 44c rate for good.</strong> Before you change anything, it's worth understanding exactly what you'd be giving up. That's exactly what a Health Check is for.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FORM ================= -->
+<section class="block form-section" id="form">
+  <div class="wrap">
+    <div class="form-card">
+      <div class="form-top">
+        <h3>Book Your Free Energy Health Check</h3>
+        <p>Takes under a minute. A local specialist will be in touch to arrange a time.</p>
+        <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+      </div>
+      <div class="form-body">
+        <form id="healthCheckForm" novalidate>
+
+          <!-- STEP 1 -->
+          <div class="step active" data-step="1">
+            <div class="step-label">Step 1 of 5</div>
+            <h4>What are you looking into?</h4>
+            <div class="options" data-name="interest">
+              <label class="opt"><input type="radio" name="interest" value="Solar"><span>Solar panels</span></label>
+              <label class="opt"><input type="radio" name="interest" value="Battery"><span>Battery storage</span></label>
+              <label class="opt"><input type="radio" name="interest" value="Solar + Battery"><span>Solar + battery</span></label>
+              <label class="opt"><input type="radio" name="interest" value="Not sure"><span>Not sure yet, I'd like advice</span></label>
+            </div>
+            <p class="err">Please choose an option to continue.</p>
+            <div class="form-nav"><span></span><button type="button" class="btn btn-next" data-next>Continue</button></div>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="step" data-step="2">
+            <div class="step-label">Step 2 of 5</div>
+            <h4>Do you already have solar installed?</h4>
+            <div class="options" data-name="existing_solar">
+              <label class="opt"><input type="radio" name="existing_solar" value="No, nothing yet"><span>No, nothing yet</span></label>
+              <label class="opt"><input type="radio" name="existing_solar" value="Yes, panels only"><span>Yes, panels only</span></label>
+              <label class="opt"><input type="radio" name="existing_solar" value="Yes, panels + battery"><span>Yes, panels + battery</span></label>
+            </div>
+            <p class="err">Please choose an option to continue.</p>
+            <div class="form-nav"><button type="button" class="btn-back" data-back>Back</button><button type="button" class="btn btn-next" data-next>Continue</button></div>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="step" data-step="3">
+            <div class="step-label">Step 3 of 5</div>
+            <h4>Roughly what's your quarterly electricity bill?</h4>
+            <div class="options" data-name="bill_range">
+              <label class="opt"><input type="radio" name="bill_range" value="Under $300"><span>Under $300</span></label>
+              <label class="opt"><input type="radio" name="bill_range" value="$300 to $600"><span>$300 to $600</span></label>
+              <label class="opt"><input type="radio" name="bill_range" value="$600 to $1,000"><span>$600 to $1,000</span></label>
+              <label class="opt"><input type="radio" name="bill_range" value="Over $1,000"><span>Over $1,000</span></label>
+            </div>
+            <p class="err">Please choose an option to continue.</p>
+            <div class="form-nav"><button type="button" class="btn-back" data-back>Back</button><button type="button" class="btn btn-next" data-next>Continue</button></div>
+          </div>
+
+          <!-- STEP 4 (ownership + timeframe) -->
+          <div class="step" data-step="4">
+            <div class="step-label">Step 4 of 5</div>
+            <h4>Do you own your home?</h4>
+            <div class="options" data-name="ownership" style="margin-bottom:26px">
+              <label class="opt"><input type="radio" name="ownership" value="Own outright"><span>Yes, I own it</span></label>
+              <label class="opt"><input type="radio" name="ownership" value="Mortgaged"><span>I'm buying / mortgaged</span></label>
+              <label class="opt"><input type="radio" name="ownership" value="Renting"><span>No, I rent</span></label>
+            </div>
+            <h4>When are you looking to make a decision?</h4>
+            <div class="options" data-name="timeframe">
+              <label class="opt"><input type="radio" name="timeframe" value="ASAP"><span>As soon as possible</span></label>
+              <label class="opt"><input type="radio" name="timeframe" value="1 to 3 months"><span>Within 1 to 3 months</span></label>
+              <label class="opt"><input type="radio" name="timeframe" value="3 to 6 months"><span>3 to 6 months</span></label>
+              <label class="opt"><input type="radio" name="timeframe" value="Researching"><span>Just researching for now</span></label>
+            </div>
+            <p class="err">Please answer both to continue.</p>
+            <div class="form-nav"><button type="button" class="btn-back" data-back>Back</button><button type="button" class="btn btn-next" data-next>Continue</button></div>
+          </div>
+
+          <!-- STEP 5 (contact + bill upload) -->
+          <div class="step" data-step="5">
+            <div class="step-label">Step 5 of 5</div>
+            <h4>Where should we send your Health Check details?</h4>
+            <div class="field"><label>Full name</label><input type="text" name="name" autocomplete="name" placeholder="Your name"></div>
+            <div class="field"><label>Email</label><input type="email" name="email" autocomplete="email" placeholder="you@email.com"></div>
+            <div class="field"><label>Phone</label><input type="tel" name="phone" autocomplete="tel" placeholder="04XX XXX XXX"></div>
+            <div class="field"><label>Postcode</label><input type="text" name="postcode" inputmode="numeric" autocomplete="postal-code" placeholder="e.g. 5152"></div>
+            <div class="field">
+              <label>Upload your latest electricity bill <span style="font-weight:500;color:var(--ink-soft)">(optional, speeds up your assessment)</span></label>
+              <!-- BILL UPLOAD: file is captured here. Wire to Supabase Storage in the submit handler. -->
+              <label class="upload" for="billFile">
+                <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
+                <div><strong>Click to upload</strong> or drag your bill here</div>
+                <div style="font-size:.82rem;color:var(--ink-soft);margin-top:4px">PDF, JPG or PNG</div>
+                <div class="fname" id="fileName"></div>
+              </label>
+              <input type="file" id="billFile" name="bill" accept=".pdf,.jpg,.jpeg,.png" style="display:none">
+            </div>
+            <p class="err">Please fill in your name, a valid email, phone and postcode.</p>
+            <div class="form-nav">
+              <button type="button" class="btn-back" data-back>Back</button>
+              <button type="submit" class="btn btn-next" id="submitBtn">Book My Health Check</button>
+            </div>
+          </div>
+
+          <!-- DISQUALIFY SCREEN (renters) -->
+          <div class="screen" data-screen="renter">
+            <div class="big-ic" style="color:var(--amber-dark)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div>
+            <h4>Thanks for your interest!</h4>
+            <p>Our Home Energy Health Check is designed for homeowners, since it involves assessing and potentially changing the solar setup on the property.</p>
+            <p>If you're renting, the best first step is a quick chat with your landlord or property manager, and we're happy to help them directly if they'd like.</p>
+          </div>
+
+          <!-- SUCCESS SCREEN -->
+          <div class="screen" data-screen="success">
+            <div class="big-ic" style="color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <h4>You're booked in!</h4>
+            <p>Thanks, we've got your details. One of our local Adelaide Hills specialists will be in touch shortly to arrange your free Energy Health Check.</p>
+            <p style="margin-top:14px"><strong>Prefer to talk now?</strong> Call us on <a href="tel:0883900096" style="color:var(--green);font-weight:700">(08) 8390 0096</a>.</p>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <!-- LOGO PLACEHOLDER (footer) -->
+        <div class="foot-logo">TFA SOLAR LOGO</div>
+        <p style="color:#b9c9c0;font-size:.9rem;margin-top:14px;max-width:280px">Local, family-owned solar and battery specialists serving the Adelaide Hills for over 20 years.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Contact</h5>
+        <a href="tel:0883900096">(08) 8390 0096</a>
+        <a href="mailto:info@tfasolar.com.au">info@tfasolar.com.au</a>
+        <p>9 Deviation Road<br>Carey Gully SA</p>
+      </div>
+      <div class="foot-col">
+        <h5>Why TFA Solar</h5>
+        <p>20+ Years in SA</p>
+        <p>In-House Install Team</p>
+        <p>4.9★ · 127 Google Reviews</p>
+        <p>Obligation-Free Assessments</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      © <span id="year"></span> TFA Solar. All rights reserved. &nbsp;|&nbsp; Rebate, tariff and savings outcomes vary by household and system; figures discussed are estimates based on typical Adelaide usage and are confirmed during your assessment.
+    </div>
+  </div>
+</footer>
+
+<script>
+/* =========================================================
+   TFA SOLAR — ENERGY HEALTH CHECK LANDING PAGE
+   Front-end logic only. Backend wiring points are marked
+   >>> SUPABASE <<< for Claude Code to complete.
+   ========================================================= */
+
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const form = document.getElementById('healthCheckForm');
+const steps = [...form.querySelectorAll('.step')];
+const progressBar = document.getElementById('progressBar');
+let current = 0;
+
+/* --- option selection styling --- */
+form.querySelectorAll('.opt input').forEach(input=>{
+  input.addEventListener('change',()=>{
+    const group = input.closest('.options');
+    group.querySelectorAll('.opt').forEach(o=>o.classList.remove('selected'));
+    input.closest('.opt').classList.add('selected');
+  });
+});
+
+/* --- file name display --- */
+const billFile = document.getElementById('billFile');
+billFile.addEventListener('change',()=>{
+  document.getElementById('fileName').innerHTML =
+    billFile.files.length
+      ? '<span style="color:var(--green);font-weight:700">Selected:</span> ' + billFile.files[0].name
+      : '';
+});
+
+/* --- navigation --- */
+function showStep(i){
+  steps.forEach((s,idx)=>s.classList.toggle('active', idx===i));
+  progressBar.style.width = ((i+1)/steps.length*100) + '%';
+  current = i;
+  document.getElementById('form').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function val(name){
+  const el = form.querySelector(`[name="${name}"]:checked`);
+  return el ? el.value : null;
+}
+
+function showErr(step,show){
+  const e = step.querySelector('.err');
+  if(e) e.style.display = show ? 'block' : 'none';
+}
+
+form.querySelectorAll('[data-next]').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const step = steps[current];
+    const n = +step.dataset.step;
+    let ok = true;
+
+    if(n===1) ok = !!val('interest');
+    if(n===2) ok = !!val('existing_solar');
+    if(n===3) ok = !!val('bill_range');
+    if(n===4) ok = !!val('ownership') && !!val('timeframe');
+
+    if(!ok){ showErr(step,true); return; }
+    showErr(step,false);
+
+    /* --- RENTER DISQUALIFICATION --- */
+    if(n===4 && val('ownership')==='Renting'){
+      showScreen('renter');
+      return;
+    }
+    showStep(current+1);
+  });
+});
+
+form.querySelectorAll('[data-back]').forEach(btn=>{
+  btn.addEventListener('click',()=>showStep(current-1));
+});
+
+function showScreen(which){
+  steps.forEach(s=>s.classList.remove('active'));
+  form.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  form.querySelector(`[data-screen="${which}"]`).classList.add('active');
+  progressBar.style.width = '100%';
+  document.getElementById('form').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+/* --- submit --- */
+form.addEventListener('submit', async (e)=>{
+  e.preventDefault();
+  const step = steps[current];
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const phone = form.phone.value.trim();
+  const postcode = form.postcode.value.trim();
+  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  if(!name || !emailOk || !phone || !postcode){ showErr(step,true); return; }
+  showErr(step,false);
+
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Submitting…';
+
+  /* ---- assemble the lead payload ---- */
+  const lead = {
+    interest:        val('interest'),
+    existing_solar:  val('existing_solar'),
+    bill_range:      val('bill_range'),
+    ownership:       val('ownership'),
+    timeframe:       val('timeframe'),
+    name, email, phone, postcode,
+    submitted_at:    new Date().toISOString(),
+    source:          'FB - Energy Health Check LP'
+  };
+  const file = billFile.files[0] || null;
+
+  try{
+    /* =====================================================
+       >>> SUPABASE <<<  (Claude Code: complete this block)
+       1. If `file` exists, upload to a PRIVATE Storage
+          bucket (e.g. 'bills'); keep the returned path.
+       2. Insert `lead` (+ bill path) into the `leads` table.
+       3. RLS: anon key may INSERT only, never SELECT.
+       A Supabase DB webhook / Make.com watch on new rows
+       then pushes the lead into Pipedrive.
+       ---------------------------------------------------
+       Example shape (uncomment once client + keys exist):
+
+       const { createClient } = supabase;
+       const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+       let billPath = null;
+       if(file){
+         const path = `bills/${Date.now()}_${file.name}`;
+         const up = await db.storage.from('bills').upload(path, file);
+         billPath = up.data?.path ?? null;
+       }
+       await db.from('leads').insert([{ ...lead, bill_path: billPath }]);
+    ===================================================== */
+
+    // Placeholder so the page works before backend is wired:
+    console.log('LEAD (wire to Supabase):', lead, file);
+    await new Promise(r=>setTimeout(r,600));
+
+    showScreen('success');
+  }catch(err){
+    console.error(err);
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Book My Health Check';
+    showErr(step,true);
+    step.querySelector('.err').textContent = 'Something went wrong, please try again or call us directly.';
+  }
+});
+</script>
+</body>
+</html>
