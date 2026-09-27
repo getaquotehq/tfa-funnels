@@ -469,12 +469,12 @@
           <div class="step" data-step="5">
             <div class="step-label">Step 5 of 5</div>
             <h4>Where should we send your Health Check details?</h4>
-            <div class="field"><label>Full name</label><input type="text" name="name" autocomplete="name" placeholder="Your name"></div>
-            <div class="field"><label>Email</label><input type="email" name="email" autocomplete="email" placeholder="you@email.com"></div>
-            <div class="field"><label>Phone</label><input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="04XX XXX XXX"></div>
-            <div class="field"><label>Postcode</label><input type="text" name="postcode" inputmode="numeric" autocomplete="postal-code" maxlength="4" placeholder="e.g. 5152"></div>
+            <div class="field"><label for="f-name">Full name</label><input id="f-name" type="text" name="name" autocomplete="name" placeholder="Your name"></div>
+            <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" name="email" autocomplete="email" placeholder="you@email.com"></div>
+            <div class="field"><label for="f-phone">Phone</label><input id="f-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="04XX XXX XXX"></div>
+            <div class="field"><label for="f-postcode">Postcode</label><input id="f-postcode" type="text" name="postcode" inputmode="numeric" autocomplete="postal-code" maxlength="4" placeholder="e.g. 5152"></div>
             <div class="field">
-              <label>Upload your latest electricity bill <span style="font-weight:500;color:var(--ink-soft)">(optional, speeds up your assessment)</span></label>
+              <label for="billFile">Upload your latest electricity bill <span style="font-weight:500;color:var(--ink-soft)">(optional, speeds up your assessment)</span></label>
               <label class="upload" for="billFile">
                 <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
                 <div><strong class="mouse">Click to upload</strong><span class="mouse"> or drag your bill here</span><strong class="touch">Tap to upload a photo or PDF of your bill</strong></div>
@@ -502,8 +502,8 @@
           <!-- SUCCESS SCREEN -->
           <div class="screen" data-screen="success">
             <div class="big-ic" style="color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
-            <h4>You're booked in!</h4>
-            <p>Thanks, we've got your details. One of our local Adelaide Hills specialists will be in touch shortly to arrange your free Energy Health Check.</p>
+            <h4>Thanks, we've got your request</h4>
+            <p>One of our local Adelaide Hills specialists will call you shortly to arrange a time for your free Energy Health Check.</p>
             <p style="margin-top:14px"><strong>Prefer to talk now?</strong> Call us on <a href="tel:0883900096" style="color:var(--green);font-weight:700">(08) 8390 0096</a>.</p>
           </div>
 
