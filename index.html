@@ -235,7 +235,6 @@
   .upload.drag{background:rgba(0,168,78,.1)}
   .upload .touch{display:none}
   @media(hover:none){.upload .touch{display:inline}.upload .mouse{display:none}}
-  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   .form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:14px}
   .btn-back{background:none;border:none;color:var(--ink-soft);font-weight:600;cursor:pointer;font-size:.95rem;padding:10px}
   .btn-back:hover{color:var(--ink)}
@@ -482,8 +481,6 @@
               </label>
               <input type="file" id="billFile" name="bill" accept=".pdf,.jpg,.jpeg,.png" style="display:none">
             </div>
-            <!-- honeypot: real people never see or fill this -->
-            <div class="hp" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
             <p class="err">Please fill in your name, a valid email, phone and postcode.</p>
             <div class="form-nav">
               <button type="button" class="btn-back" data-back>Back</button>
@@ -566,6 +563,7 @@ const form = document.getElementById('healthCheckForm');
 const steps = [...form.querySelectorAll('.step')];
 const progressBar = document.getElementById('progressBar');
 let current = 0;
+const PAGE_LOADED = Date.now();
 
 /* --- capture ad tracking params on arrival --- */
 const params = new URLSearchParams(location.search);
@@ -694,8 +692,8 @@ form.addEventListener('submit', async (e)=>{
   }
   showErr(step,false);
 
-  /* bots fill the hidden field; quietly pretend it worked */
-  if(form.elements.company.value){ showScreen('success'); return; }
+  /* nobody finishes five steps in under 5 seconds; quietly drop bot submissions */
+  if(Date.now() - PAGE_LOADED < 5000){ showScreen('success'); return; }
 
   const submitBtn = document.getElementById('submitBtn');
   submitBtn.disabled = true;
