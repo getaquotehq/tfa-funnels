@@ -60,14 +60,17 @@
     backdrop-filter:blur(8px);border-bottom:1px solid var(--line);
   }
   .header-in{display:flex;align-items:center;justify-content:space-between;height:70px}
-  /* LOGO PLACEHOLDER — swap this block for the real TFA Solar logo <img> */
-  .logo-placeholder{
-    display:flex;align-items:center;justify-content:center;
-    width:150px;height:44px;border:2px dashed var(--green);border-radius:8px;
-    color:var(--green);font-weight:700;font-size:.8rem;letter-spacing:.03em;
-    background:rgba(0,132,59,.04);text-align:center;
+  /* LOGO: embedded as a data URI so the page is fully self-contained */
+  .logo{
+    display:block;flex:0 0 auto;height:48px;aspect-ratio:634/228;
+    background:url("data:image/png;base64,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") center/contain no-repeat;
   }
   .header-cta{display:flex;align-items:center;gap:18px}
+  .header-call{
+    display:none;align-items:center;justify-content:center;width:44px;height:44px;
+    border-radius:10px;border:2px solid var(--green);color:var(--green);text-decoration:none;
+  }
+  .header-call svg{width:20px;height:20px}
   .header-phone{display:flex;align-items:center;gap:7px;font-weight:700;color:var(--ink);text-decoration:none;font-size:.98rem}
   .header-phone svg{width:16px;height:16px;color:var(--green)}
   .header-btn{
@@ -75,7 +78,21 @@
     padding:11px 20px;border-radius:10px;text-decoration:none;transition:background .15s;
   }
   .header-btn:hover{background:var(--green-dark)}
-  @media(max-width:620px){.header-phone{display:none}}
+  .header-btn{white-space:nowrap}
+  .header-btn .short{display:none}
+  @media(max-width:420px){.header-btn .long{display:none}.header-btn .short{display:inline}}
+  @media(max-width:620px){
+    .header-phone{display:none}
+    .header-call{display:inline-flex}
+    .header-in{height:62px}
+    .header-cta{gap:10px}
+    .logo{height:38px}
+    .header-btn{padding:11px 14px;font-size:.88rem}
+  }
+  @media(max-width:360px){
+    .logo{height:32px}
+    .header-btn{padding:10px 11px;font-size:.82rem}
+  }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -107,7 +124,6 @@
   .tick svg{width:12px;height:12px}
   @media(max-width:860px){
     .hero-grid{grid-template-columns:1fr;gap:32px}
-    .hero-visual{order:-1}
   }
 
   /* ---------- SITUATION ROW ---------- */
@@ -171,7 +187,7 @@
   @media(max-width:760px){.hl-grid{grid-template-columns:1fr;gap:20px;text-align:center}.highlight .warn{text-align:left}}
 
   /* ---------- FORM ---------- */
-  .form-section{background:var(--bg-soft)}
+  .form-section{background:var(--bg-soft);scroll-margin-top:62px}
   .form-card{
     max-width:680px;margin:0 auto;background:#fff;border-radius:20px;
     box-shadow:var(--shadow-lg);overflow:hidden;border:1px solid var(--line);
@@ -211,11 +227,16 @@
   .upload .ic{color:var(--green);display:flex;justify-content:center;margin-bottom:10px}
   .upload .ic svg{width:34px;height:34px}
   .upload strong{color:var(--green)}
-  .upload .fname{margin-top:10px;font-size:.9rem;color:var(--ink);font-weight:600}
+  .upload .fname{margin-top:10px;font-size:.9rem;color:var(--ink);font-weight:600;overflow-wrap:anywhere}
+  .upload.drag{background:rgba(0,132,59,.1)}
+  .upload .touch{display:none}
+  @media(hover:none){.upload .touch{display:inline}.upload .mouse{display:none}}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
   .form-nav{display:flex;justify-content:space-between;align-items:center;margin-top:26px;gap:14px}
   .btn-back{background:none;border:none;color:var(--ink-soft);font-weight:600;cursor:pointer;font-size:.95rem;padding:10px}
   .btn-back:hover{color:var(--ink)}
   .btn-next{background:var(--green);color:#fff;box-shadow:0 6px 18px rgba(0,132,59,.3)}
+  .btn:disabled{opacity:.7;cursor:wait;transform:none}
   .btn-next:hover{background:var(--green-dark);box-shadow:0 10px 24px rgba(0,132,59,.4)}
   .err{color:#c0392b;font-size:.88rem;margin-top:10px;font-weight:600;display:none}
 
@@ -230,11 +251,35 @@
   /* ---------- FOOTER ---------- */
   footer{background:var(--dark);color:#fff;padding:44px 0 30px}
   .foot-grid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:flex-start}
-  .foot-logo{width:150px;height:44px;border:2px dashed rgba(255,255,255,.4);border-radius:8px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.6);font-size:.75rem;font-weight:700}
+  .foot-logo{display:inline-block;background:#fff;border-radius:12px;padding:10px 14px}
+  .foot-logo .logo{height:46px}
   .foot-col h5{font-size:.9rem;font-weight:750;margin-bottom:10px;color:var(--amber)}
   .foot-col p,.foot-col a{font-size:.9rem;color:#b9c9c0;text-decoration:none;display:block;margin-bottom:6px}
   .foot-col a:hover{color:#fff}
   .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:30px;padding-top:20px;font-size:.8rem;color:#8ba396;text-align:center;line-height:1.6}
+
+  /* ---------- MOBILE ---------- */
+  @media(max-width:620px){
+    .wrap{padding:0 16px}
+    .hero{padding:32px 0 32px}
+    .hero h1{font-size:clamp(1.75rem,8vw,2.2rem)}
+    .hero p.lead{font-size:1.05rem}
+    .hero-cta-row .btn{width:100%;justify-content:center;text-align:center}
+    .hero-visual{padding:24px 20px;border-radius:16px}
+    section.block{padding:44px 0}
+    .section-head{margin-bottom:28px}
+    .section-head p,.edu-sub{font-size:1rem}
+    .card{padding:20px}
+    .card:hover{transform:none}
+    .form-top{padding:22px 20px}
+    .form-top h3{font-size:1.2rem}
+    .form-body{padding:22px 18px}
+    .step h4{font-size:1.15rem}
+    .opt{padding:14px 14px}
+    .upload{padding:20px 14px}
+    .form-nav .btn-next{flex:1;justify-content:center;padding:15px 18px}
+    .foot-grid{flex-direction:column;gap:24px}
+  }
 </style>
 </head>
 <body>
@@ -242,14 +287,16 @@
 <!-- ================= HEADER ================= -->
 <header>
   <div class="wrap header-in">
-    <!-- LOGO PLACEHOLDER -->
-    <div class="logo-placeholder">TFA SOLAR<br>LOGO</div>
+    <a href="#" class="logo" role="img" aria-label="TFA Solar"></a>
     <div class="header-cta">
+      <a href="tel:0883900096" class="header-call" aria-label="Call TFA Solar on (08) 8390 0096">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </a>
       <a href="tel:0883900096" class="header-phone">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         (08) 8390 0096
       </a>
-      <a href="#form" class="header-btn">Book Health Check</a>
+      <a href="#form" class="header-btn"><span class="long">Book Health Check</span><span class="short">Book Now</span></a>
     </div>
   </div>
 </header>
@@ -414,19 +461,20 @@
             <h4>Where should we send your Health Check details?</h4>
             <div class="field"><label>Full name</label><input type="text" name="name" autocomplete="name" placeholder="Your name"></div>
             <div class="field"><label>Email</label><input type="email" name="email" autocomplete="email" placeholder="you@email.com"></div>
-            <div class="field"><label>Phone</label><input type="tel" name="phone" autocomplete="tel" placeholder="04XX XXX XXX"></div>
-            <div class="field"><label>Postcode</label><input type="text" name="postcode" inputmode="numeric" autocomplete="postal-code" placeholder="e.g. 5152"></div>
+            <div class="field"><label>Phone</label><input type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="04XX XXX XXX"></div>
+            <div class="field"><label>Postcode</label><input type="text" name="postcode" inputmode="numeric" autocomplete="postal-code" maxlength="4" placeholder="e.g. 5152"></div>
             <div class="field">
               <label>Upload your latest electricity bill <span style="font-weight:500;color:var(--ink-soft)">(optional, speeds up your assessment)</span></label>
-              <!-- BILL UPLOAD: file is captured here. Wire to Supabase Storage in the submit handler. -->
               <label class="upload" for="billFile">
                 <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg></div>
-                <div><strong>Click to upload</strong> or drag your bill here</div>
-                <div style="font-size:.82rem;color:var(--ink-soft);margin-top:4px">PDF, JPG or PNG</div>
+                <div><strong class="mouse">Click to upload</strong><span class="mouse"> or drag your bill here</span><strong class="touch">Tap to upload a photo or PDF of your bill</strong></div>
+                <div style="font-size:.82rem;color:var(--ink-soft);margin-top:4px">PDF, JPG or PNG, up to 10MB</div>
                 <div class="fname" id="fileName"></div>
               </label>
               <input type="file" id="billFile" name="bill" accept=".pdf,.jpg,.jpeg,.png" style="display:none">
             </div>
+            <!-- honeypot: real people never see or fill this -->
+            <div class="hp" aria-hidden="true"><label>Company<input type="text" name="company" tabindex="-1" autocomplete="off"></label></div>
             <p class="err">Please fill in your name, a valid email, phone and postcode.</p>
             <div class="form-nav">
               <button type="button" class="btn-back" data-back>Back</button>
@@ -461,8 +509,7 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <!-- LOGO PLACEHOLDER (footer) -->
-        <div class="foot-logo">TFA SOLAR LOGO</div>
+        <div class="foot-logo"><span class="logo" role="img" aria-label="TFA Solar"></span></div>
         <p style="color:#b9c9c0;font-size:.9rem;margin-top:14px;max-width:280px">Local, family-owned solar and battery specialists serving the Adelaide Hills for over 20 years.</p>
       </div>
       <div class="foot-col">
@@ -485,12 +532,24 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 /* =========================================================
-   TFA SOLAR — ENERGY HEALTH CHECK LANDING PAGE
-   Front-end logic only. Backend wiring points are marked
-   >>> SUPABASE <<< for Claude Code to complete.
+   TFA SOLAR: ENERGY HEALTH CHECK LANDING PAGE
    ========================================================= */
+
+/* ---- Supabase config: paste your project URL and publishable (anon) key ----
+   The publishable key is safe in the browser. RLS only lets it INSERT leads
+   and upload bills, never read them back. Never put the service_role key here. */
+const SUPABASE_URL = 'https://YOUR-PROJECT-REF.supabase.co';
+const SUPABASE_KEY = 'YOUR-PUBLISHABLE-OR-ANON-KEY';
+const BILL_BUCKET  = 'bills';
+const MAX_BILL_MB  = 10;
+const LEAD_SOURCE  = 'FB - Energy Health Check LP';
+
+const db = (window.supabase && !SUPABASE_URL.includes('YOUR-PROJECT-REF'))
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth: { persistSession: false } })
+  : null;
 
 document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -498,6 +557,16 @@ const form = document.getElementById('healthCheckForm');
 const steps = [...form.querySelectorAll('.step')];
 const progressBar = document.getElementById('progressBar');
 let current = 0;
+
+/* --- capture ad tracking params on arrival --- */
+const params = new URLSearchParams(location.search);
+const tracking = {};
+['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid','gclid'].forEach(k=>{
+  const v = params.get(k);
+  if(v) tracking[k] = v.slice(0,200);
+});
+if(document.referrer) tracking.referrer = document.referrer.slice(0,300);
+tracking.page = (location.origin + location.pathname).slice(0,300);
 
 /* --- option selection styling --- */
 form.querySelectorAll('.opt input').forEach(input=>{
@@ -508,21 +577,43 @@ form.querySelectorAll('.opt input').forEach(input=>{
   });
 });
 
-/* --- file name display --- */
+/* --- bill file: pick, drag and drop, validate --- */
 const billFile = document.getElementById('billFile');
-billFile.addEventListener('change',()=>{
-  document.getElementById('fileName').innerHTML =
-    billFile.files.length
-      ? '<span style="color:var(--green);font-weight:700">Selected:</span> ' + billFile.files[0].name
-      : '';
-});
+const uploadBox = document.querySelector('.upload');
+const fileNameEl = document.getElementById('fileName');
+const ALLOWED = ['application/pdf','image/jpeg','image/png'];
+let chosenFile = null;
+
+function setFile(f){
+  chosenFile = null;
+  fileNameEl.textContent = '';
+  if(!f) return;
+  if(!ALLOWED.includes(f.type)){
+    fileNameEl.innerHTML = '<span style="color:#c0392b">Please choose a PDF, JPG or PNG file.</span>';
+    return;
+  }
+  if(f.size > MAX_BILL_MB*1024*1024){
+    fileNameEl.innerHTML = '<span style="color:#c0392b">That file is over ' + MAX_BILL_MB + 'MB. Please choose a smaller one.</span>';
+    return;
+  }
+  chosenFile = f;
+  fileNameEl.innerHTML = '<span style="color:var(--green);font-weight:700">Selected:</span> ';
+  fileNameEl.append(document.createTextNode(f.name));
+}
+billFile.addEventListener('change',()=>setFile(billFile.files[0]));
+['dragenter','dragover'].forEach(ev=>uploadBox.addEventListener(ev,e=>{e.preventDefault();uploadBox.classList.add('drag');}));
+['dragleave','drop'].forEach(ev=>uploadBox.addEventListener(ev,e=>{e.preventDefault();uploadBox.classList.remove('drag');}));
+uploadBox.addEventListener('drop',e=>setFile(e.dataTransfer.files[0]));
 
 /* --- navigation --- */
+function scrollToForm(){
+  document.getElementById('form').scrollIntoView({behavior:'smooth',block:'start'});
+}
 function showStep(i){
   steps.forEach((s,idx)=>s.classList.toggle('active', idx===i));
   progressBar.style.width = ((i+1)/steps.length*100) + '%';
   current = i;
-  document.getElementById('form').scrollIntoView({behavior:'smooth',block:'start'});
+  scrollToForm();
 }
 
 function val(name){
@@ -567,73 +658,77 @@ function showScreen(which){
   form.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
   form.querySelector(`[data-screen="${which}"]`).classList.add('active');
   progressBar.style.width = '100%';
-  document.getElementById('form').scrollIntoView({behavior:'smooth',block:'start'});
+  scrollToForm();
+}
+
+function uid(){
+  return (crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(36).slice(2));
 }
 
 /* --- submit --- */
 form.addEventListener('submit', async (e)=>{
   e.preventDefault();
   const step = steps[current];
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-  const phone = form.phone.value.trim();
-  const postcode = form.postcode.value.trim();
+  const errEl = step.querySelector('.err');
+  const name = form.elements.name.value.trim();
+  const email = form.elements.email.value.trim();
+  const phone = form.elements.phone.value.trim();
+  const postcode = form.elements.postcode.value.trim();
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const phoneOk = phone.replace(/\D/g,'').length >= 8;
+  const postcodeOk = /^\d{4}$/.test(postcode);
 
-  if(!name || !emailOk || !phone || !postcode){ showErr(step,true); return; }
+  if(!name || !emailOk || !phoneOk || !postcodeOk){
+    errEl.textContent = 'Please fill in your name, a valid email, phone and 4 digit postcode.';
+    showErr(step,true);
+    return;
+  }
   showErr(step,false);
+
+  /* bots fill the hidden field; quietly pretend it worked */
+  if(form.elements.company.value){ showScreen('success'); return; }
 
   const submitBtn = document.getElementById('submitBtn');
   submitBtn.disabled = true;
-  submitBtn.textContent = 'Submitting…';
-
-  /* ---- assemble the lead payload ---- */
-  const lead = {
-    interest:        val('interest'),
-    existing_solar:  val('existing_solar'),
-    bill_range:      val('bill_range'),
-    ownership:       val('ownership'),
-    timeframe:       val('timeframe'),
-    name, email, phone, postcode,
-    submitted_at:    new Date().toISOString(),
-    source:          'FB - Energy Health Check LP'
-  };
-  const file = billFile.files[0] || null;
+  submitBtn.textContent = 'Submitting...';
 
   try{
-    /* =====================================================
-       >>> SUPABASE <<<  (Claude Code: complete this block)
-       1. If `file` exists, upload to a PRIVATE Storage
-          bucket (e.g. 'bills'); keep the returned path.
-       2. Insert `lead` (+ bill path) into the `leads` table.
-       3. RLS: anon key may INSERT only, never SELECT.
-       A Supabase DB webhook / Make.com watch on new rows
-       then pushes the lead into Pipedrive.
-       ---------------------------------------------------
-       Example shape (uncomment once client + keys exist):
+    if(!db) throw new Error('Supabase is not configured (set SUPABASE_URL and SUPABASE_KEY).');
 
-       const { createClient } = supabase;
-       const db = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-       let billPath = null;
-       if(file){
-         const path = `bills/${Date.now()}_${file.name}`;
-         const up = await db.storage.from('bills').upload(path, file);
-         billPath = up.data?.path ?? null;
-       }
-       await db.from('leads').insert([{ ...lead, bill_path: billPath }]);
-    ===================================================== */
+    /* 1. upload bill to the private bucket (optional) */
+    let billPath = null;
+    if(chosenFile){
+      const ext = (chosenFile.name.split('.').pop() || 'bin').toLowerCase().replace(/[^a-z0-9]/g,'');
+      const path = `${new Date().toISOString().slice(0,10)}/${uid()}.${ext}`;
+      const up = await db.storage.from(BILL_BUCKET).upload(path, chosenFile, {
+        contentType: chosenFile.type, upsert: false
+      });
+      if(up.error) console.error('Bill upload failed, continuing without it:', up.error);
+      else billPath = up.data.path;
+    }
 
-    // Placeholder so the page works before backend is wired:
-    console.log('LEAD (wire to Supabase):', lead, file);
-    await new Promise(r=>setTimeout(r,600));
+    /* 2. insert the lead (insert only, no read back) */
+    const { error } = await db.from('leads').insert({
+      interest:       val('interest'),
+      existing_solar: val('existing_solar'),
+      bill_range:     val('bill_range'),
+      ownership:      val('ownership'),
+      timeframe:      val('timeframe'),
+      name, email, phone, postcode,
+      bill_path:      billPath,
+      bill_filename:  chosenFile ? chosenFile.name.slice(0,200) : null,
+      source:         LEAD_SOURCE,
+      tracking
+    });
+    if(error) throw error;
 
     showScreen('success');
   }catch(err){
     console.error(err);
     submitBtn.disabled = false;
     submitBtn.textContent = 'Book My Health Check';
+    errEl.textContent = 'Something went wrong. Please try again or call us on (08) 8390 0096.';
     showErr(step,true);
-    step.querySelector('.err').textContent = 'Something went wrong, please try again or call us directly.';
   }
 });
 </script>
