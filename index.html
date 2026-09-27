@@ -241,6 +241,8 @@
   .btn-next{background:var(--green);color:#fff;box-shadow:0 6px 18px rgba(0,168,78,.3)}
   .btn:disabled{opacity:.7;cursor:wait;transform:none}
   .btn-next:hover{background:var(--green-dark);box-shadow:0 10px 24px rgba(0,168,78,.4)}
+  .consent{font-size:.8rem;color:var(--ink-soft);margin-top:14px;text-align:center}
+  .consent a{color:var(--green-dark)}
   .err{color:#c0392b;font-size:.88rem;margin-top:10px;font-weight:600;display:none}
 
   /* disqualify + success screens */
@@ -486,6 +488,7 @@
               <button type="button" class="btn-back" data-back>Back</button>
               <button type="submit" class="btn btn-next" id="submitBtn">Book My Health Check</button>
             </div>
+            <p class="consent">By booking, you agree to us contacting you about your Health Check. See our <a href="/privacy-policy/">Privacy Policy</a>.</p>
           </div>
 
           <!-- DISQUALIFY SCREEN (renters) -->
@@ -533,7 +536,7 @@
       </div>
     </div>
     <div class="foot-bottom">
-      © <span id="year"></span> TFA Solar. All rights reserved. &nbsp;|&nbsp; Rebate, tariff and savings outcomes vary by household and system; figures discussed are estimates based on typical Adelaide usage and are confirmed during your assessment.
+      © <span id="year"></span> TFA Solar. All rights reserved. &nbsp;|&nbsp; <a href="/privacy-policy/" style="color:#b9c9c0">Privacy Policy</a> &nbsp;|&nbsp; Rebate, tariff and savings outcomes vary by household and system; figures discussed are estimates based on typical Adelaide usage and are confirmed during your assessment.
     </div>
   </div>
 </footer>
