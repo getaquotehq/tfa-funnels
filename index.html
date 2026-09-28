@@ -109,8 +109,20 @@
     letter-spacing:-.02em;margin:18px 0 18px;
   }
   .hero h1 .hl{color:var(--green)}
-  .hero p.lead{font-size:1.18rem;color:var(--ink-soft);max-width:540px;margin-bottom:26px}
+  .hero p.lead{font-size:1.18rem;color:var(--ink-soft);max-width:540px;margin-top:24px}
+  .hero-rating{display:flex;align-items:center;gap:8px;white-space:nowrap;margin:-4px 0 22px;font-size:1rem;color:var(--ink)}
+  .hero-rating .stars{font-size:1.15rem;letter-spacing:1px;color:var(--amber-dark)}
+  .hero-rating strong{font-weight:800}
+  .hero-rating .g{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft);font-weight:600}
+  .hero-rating .g svg{width:16px;height:16px}
   .hero-cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+  /* Primary hero CTA: amber on a light hero needs a solid edge and depth to stand out */
+  .btn-hero{
+    font-size:1.15rem;padding:19px 34px;border:2px solid var(--amber-dark);
+    box-shadow:0 5px 0 #b97d00,0 14px 30px rgba(227,156,5,.45);
+  }
+  .btn-hero:hover{transform:translateY(2px);box-shadow:0 3px 0 #b97d00,0 10px 22px rgba(227,156,5,.45)}
+  .btn-hero:active{transform:translateY(5px);box-shadow:0 0 0 #b97d00,0 6px 14px rgba(227,156,5,.35)}
   .hero-note{font-size:.9rem;color:var(--ink-soft)}
   .hero-note strong{color:var(--ink)}
   .hero-visual{
@@ -275,6 +287,8 @@
     .hero h1{font-size:clamp(1.75rem,8vw,2.2rem)}
     .hero p.lead{font-size:1.05rem}
     .hero-cta-row .btn{width:100%;justify-content:center;text-align:center}
+    .hero-rating{font-size:.92rem;gap:6px}
+    .hero-rating .stars{font-size:1rem}
     .hero-visual{padding:24px 20px;border-radius:16px}
     section.block{padding:44px 0}
     .section-head{margin-bottom:28px}
@@ -289,6 +303,9 @@
     .upload{padding:20px 14px}
     .form-nav .btn-next{flex:1;justify-content:center;padding:15px 18px}
     .foot-grid{flex-direction:column;gap:24px}
+  }
+  @media(max-width:370px){
+    .hero-rating{flex-wrap:wrap;white-space:normal;row-gap:2px}
   }
 </style>
 </head>
@@ -317,13 +334,18 @@
     <div>
       <span class="eyebrow">Adelaide Hills • Free Assessment</span>
       <h1>Before you spend a cent on solar or a battery, <span class="hl">find out what you already have.</span></h1>
-      <p class="lead">Book a free Adelaide Hills Home Energy Health Check. One of our local specialists reviews your existing solar, bills, usage and feed-in tariff, then explains, plainly, whether a battery, an upgrade, or leaving things as they are makes the most sense for your home.</p>
+      <div class="hero-rating" aria-label="Rated 4.9 out of 5 from 127 Google reviews">
+        <span class="stars" aria-hidden="true">★★★★★</span>
+        <span><strong>4.9</strong> from <strong>127</strong></span>
+        <span class="g"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Google reviews</span>
+      </div>
       <div class="hero-cta-row">
-        <a href="#form" class="btn">Book a Free Energy Health Check
+        <a href="#form" class="btn btn-hero">Book a Free Energy Health Check
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
         <div class="hero-note"><strong>No pressure sales.</strong><br>If your setup is fine as-is, we'll tell you.</div>
       </div>
+      <p class="lead">Book a free Adelaide Hills Home Energy Health Check. One of our local specialists reviews your existing solar, bills, usage and feed-in tariff, then explains, plainly, whether a battery, an upgrade, or leaving things as they are makes the most sense for your home.</p>
     </div>
     <div class="hero-visual">
       <h3>What your Health Check covers</h3>
