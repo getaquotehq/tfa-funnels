@@ -220,6 +220,10 @@
   .step-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--green);margin-bottom:6px}
   .step h4{font-size:1.3rem;font-weight:800;margin-bottom:20px;letter-spacing:-.01em}
   .options{display:flex;flex-direction:column;gap:12px}
+  .options-row{flex-direction:row}
+  .options-row .opt{flex:1}
+  .step .options + h4,.step .cond + h4,.cond > h4:first-child,.cond .options + h4,.cond .field + h4{margin-top:26px}
+  .cond[hidden],.field[hidden]{display:none}
   .opt{
     display:flex;align-items:center;gap:14px;border:2px solid var(--line);border-radius:12px;
     padding:16px 18px;cursor:pointer;transition:all .15s;font-weight:600;font-size:1rem;
@@ -429,7 +433,7 @@
           <!-- STEP 1 -->
           <div class="step active" data-step="1">
             <div class="step-label">Step 1 of 5</div>
-            <h4>What are you looking into?</h4>
+            <h4>What are you interested in?</h4>
             <div class="options" data-name="interest">
               <label class="opt"><input type="radio" name="interest" value="Solar"><span>Solar panels</span></label>
               <label class="opt"><input type="radio" name="interest" value="Battery"><span>Battery storage</span></label>
@@ -440,23 +444,49 @@
             <div class="form-nav"><span></span><button type="button" class="btn btn-next" data-next>Continue</button></div>
           </div>
 
-          <!-- STEP 2 -->
+          <!-- STEP 2 (current setup) -->
           <div class="step" data-step="2">
             <div class="step-label">Step 2 of 5</div>
-            <h4>Do you already have solar installed?</h4>
-            <div class="options" data-name="existing_solar">
-              <label class="opt"><input type="radio" name="existing_solar" value="No, nothing yet"><span>No, nothing yet</span></label>
-              <label class="opt"><input type="radio" name="existing_solar" value="Yes, panels only"><span>Yes, panels only</span></label>
-              <label class="opt"><input type="radio" name="existing_solar" value="Yes, panels + battery"><span>Yes, panels + battery</span></label>
+            <h4>Do you currently have solar?</h4>
+            <div class="options options-row">
+              <label class="opt"><input type="radio" name="has_solar" value="Yes"><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="has_solar" value="No"><span>No</span></label>
             </div>
-            <p class="err">Please choose an option to continue.</p>
+
+            <div class="cond" id="solarFollowUp" hidden>
+              <h4>Approximately how old is it?</h4>
+              <div class="options">
+                <label class="opt"><input type="radio" name="solar_age" value="Under 5 years"><span>Under 5 years</span></label>
+                <label class="opt"><input type="radio" name="solar_age" value="5 to 10 years"><span>5 to 10 years</span></label>
+                <label class="opt"><input type="radio" name="solar_age" value="10 to 15 years"><span>10 to 15 years</span></label>
+                <label class="opt"><input type="radio" name="solar_age" value="Over 15 years"><span>Over 15 years</span></label>
+                <label class="opt"><input type="radio" name="solar_age" value="Not sure"><span>Not sure</span></label>
+              </div>
+
+              <h4>Do you know what feed-in tariff you're receiving?</h4>
+              <div class="options options-row">
+                <label class="opt"><input type="radio" name="fit_known" value="Yes"><span>Yes</span></label>
+                <label class="opt"><input type="radio" name="fit_known" value="No"><span>No / not sure</span></label>
+              </div>
+              <div class="field" id="fitRateField" hidden style="margin-top:12px">
+                <label for="f-fit">What is it? <span style="font-weight:500;color:var(--ink-soft)">(optional)</span></label>
+                <input id="f-fit" type="text" name="fit_rate" maxlength="40" placeholder="e.g. 5c per kWh">
+              </div>
+            </div>
+
+            <h4>Do you currently have a battery?</h4>
+            <div class="options options-row">
+              <label class="opt"><input type="radio" name="has_battery" value="Yes"><span>Yes</span></label>
+              <label class="opt"><input type="radio" name="has_battery" value="No"><span>No</span></label>
+            </div>
+            <p class="err">Please answer each question to continue.</p>
             <div class="form-nav"><button type="button" class="btn-back" data-back>Back</button><button type="button" class="btn btn-next" data-next>Continue</button></div>
           </div>
 
           <!-- STEP 3 -->
           <div class="step" data-step="3">
             <div class="step-label">Step 3 of 5</div>
-            <h4>Roughly what's your quarterly electricity bill?</h4>
+            <h4>What's your average quarterly electricity bill?</h4>
             <div class="options" data-name="bill_range">
               <label class="opt"><input type="radio" name="bill_range" value="Under $300"><span>Under $300</span></label>
               <label class="opt"><input type="radio" name="bill_range" value="$300 to $600"><span>$300 to $600</span></label>
@@ -470,13 +500,13 @@
           <!-- STEP 4 (ownership + timeframe) -->
           <div class="step" data-step="4">
             <div class="step-label">Step 4 of 5</div>
-            <h4>Do you own your home?</h4>
+            <h4>Do you own the property?</h4>
             <div class="options" data-name="ownership" style="margin-bottom:26px">
               <label class="opt"><input type="radio" name="ownership" value="Own outright"><span>Yes, I own it</span></label>
               <label class="opt"><input type="radio" name="ownership" value="Mortgaged"><span>I'm buying / mortgaged</span></label>
               <label class="opt"><input type="radio" name="ownership" value="Renting"><span>No, I rent</span></label>
             </div>
-            <h4>When are you looking to make a decision?</h4>
+            <h4>When are you considering doing something?</h4>
             <div class="options" data-name="timeframe">
               <label class="opt"><input type="radio" name="timeframe" value="ASAP"><span>As soon as possible</span></label>
               <label class="opt"><input type="radio" name="timeframe" value="1 to 3 months"><span>Within 1 to 3 months</span></label>
@@ -494,6 +524,7 @@
             <div class="field"><label for="f-name">Full name</label><input id="f-name" type="text" name="name" autocomplete="name" placeholder="Your name"></div>
             <div class="field"><label for="f-email">Email</label><input id="f-email" type="email" name="email" autocomplete="email" placeholder="you@email.com"></div>
             <div class="field"><label for="f-phone">Phone</label><input id="f-phone" type="tel" name="phone" autocomplete="tel" inputmode="tel" placeholder="04XX XXX XXX"></div>
+            <div class="field"><label for="f-suburb">Suburb</label><input id="f-suburb" type="text" name="suburb" autocomplete="address-level2" maxlength="80" placeholder="e.g. Stirling"></div>
             <div class="field"><label for="f-postcode">Postcode</label><input id="f-postcode" type="text" name="postcode" inputmode="numeric" autocomplete="postal-code" maxlength="4" placeholder="e.g. 5152"></div>
             <div class="field">
               <label for="billFile">Upload your latest electricity bill <span style="font-weight:500;color:var(--ink-soft)">(optional, speeds up your assessment)</span></label>
@@ -505,7 +536,7 @@
               </label>
               <input type="file" id="billFile" name="bill" accept=".pdf,.jpg,.jpeg,.png" style="display:none">
             </div>
-            <p class="err">Please fill in your name, a valid email, phone and postcode.</p>
+            <p class="err">Please fill in your name, a valid email, phone, suburb and postcode.</p>
             <div class="form-nav">
               <button type="button" class="btn-back" data-back>Back</button>
               <button type="submit" class="btn btn-next" id="submitBtn">Book My Health Check</button>
@@ -609,6 +640,24 @@ form.querySelectorAll('.opt input').forEach(input=>{
   });
 });
 
+/* --- step 2: only ask age / feed-in tariff when they already have solar --- */
+const solarFollowUp = document.getElementById('solarFollowUp');
+const fitRateField = document.getElementById('fitRateField');
+function clearRadios(names){
+  names.forEach(n=>form.querySelectorAll(`[name="${n}"]`).forEach(r=>{
+    r.checked = false; r.closest('.opt').classList.remove('selected');
+  }));
+}
+form.querySelectorAll('[name="has_solar"]').forEach(r=>r.addEventListener('change',()=>{
+  const yes = val('has_solar') === 'Yes';
+  solarFollowUp.hidden = !yes;
+  if(!yes){ clearRadios(['solar_age','fit_known']); fitRateField.hidden = true; form.elements.fit_rate.value = ''; }
+}));
+form.querySelectorAll('[name="fit_known"]').forEach(r=>r.addEventListener('change',()=>{
+  fitRateField.hidden = val('fit_known') !== 'Yes';
+  if(fitRateField.hidden) form.elements.fit_rate.value = '';
+}));
+
 /* --- bill file: pick, drag and drop, validate --- */
 const billFile = document.getElementById('billFile');
 const uploadBox = document.querySelector('.upload');
@@ -665,7 +714,8 @@ form.querySelectorAll('[data-next]').forEach(btn=>{
     let ok = true;
 
     if(n===1) ok = !!val('interest');
-    if(n===2) ok = !!val('existing_solar');
+    if(n===2) ok = !!val('has_solar') && !!val('has_battery') &&
+                   (val('has_solar') === 'No' || (!!val('solar_age') && !!val('fit_known')));
     if(n===3) ok = !!val('bill_range');
     if(n===4) ok = !!val('ownership') && !!val('timeframe');
 
@@ -706,12 +756,13 @@ form.addEventListener('submit', async (e)=>{
   const email = form.elements.email.value.trim();
   const phone = form.elements.phone.value.trim();
   const postcode = form.elements.postcode.value.trim();
+  const suburb = form.elements.suburb.value.trim().replace(/\s+/g,' ').slice(0,80);
   const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const phoneOk = phone.replace(/\D/g,'').length >= 8;
   const postcodeOk = /^\d{4}$/.test(postcode);
 
-  if(!name || !emailOk || !phoneOk || !postcodeOk){
-    errEl.textContent = 'Please fill in your name, a valid email, phone and 4 digit postcode.';
+  if(!name || !emailOk || !phoneOk || !suburb || !postcodeOk){
+    errEl.textContent = 'Please fill in your name, a valid email, phone, suburb and 4 digit postcode.';
     showErr(step,true);
     return;
   }
@@ -742,9 +793,17 @@ form.addEventListener('submit', async (e)=>{
     }
 
     /* 2. insert the lead (insert only, no read back) */
+    const hasSolar = val('has_solar') === 'Yes';
+    const hasBattery = val('has_battery');
+    const fitRate = form.elements.fit_rate.value.trim().slice(0,40);
     const { error } = await db.from('leads').insert({
       interest:       val('interest'),
-      existing_solar: val('existing_solar'),
+      /* kept in its original form for Make.com / Pipedrive and ql-hq */
+      existing_solar: !hasSolar ? 'No, nothing yet' : (hasBattery === 'Yes' ? 'Yes, panels + battery' : 'Yes, panels only'),
+      solar_age:      hasSolar ? val('solar_age') : null,
+      feed_in_tariff: !hasSolar ? null : (val('fit_known') === 'Yes' ? (fitRate ? 'Yes: ' + fitRate : 'Yes') : 'No / not sure'),
+      has_battery:    hasBattery,
+      suburb,
       bill_range:     val('bill_range'),
       ownership:      val('ownership'),
       timeframe:      val('timeframe'),
