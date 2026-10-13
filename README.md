@@ -23,5 +23,6 @@ Every new lead becomes a deal in TFA's Pipedrive (tfasolar.pipedrive.com): Lead 
 2. Deploy `supabase/functions/pipedrive-sync` with **Verify JWT off** (`supabase functions deploy pipedrive-sync --no-verify-jwt`, or Dashboard > Edge Functions > Deploy a new function > Via editor, paste `index.ts`, untick Verify JWT).
 3. Run `supabase/migrations/20261001000000_pipedrive_sync.sql`.
 
+`pipedrive_lead_source` shows what Pipedrive holds in the Person's Leads source field after each sync (run `supabase/migrations/20261013000000_pipedrive_lead_source.sql` once), so you can check it without opening Pipedrive.
 `pipedrive_deal_id` and `synced_at` are filled in once the deal exists; `sync_error` says why if Pipedrive refused. To send anything missed (this includes every lead from before the sync existed, test leads too): `select public.send_leads_to_pipedrive();`
 Uploaded bills are private: view them in Storage > bills, or on the Pipedrive deal.
