@@ -81,9 +81,7 @@ async function resolveTargets(token: string) {
 // Pipedrive keys custom fields by a generated hash and stores dropdown choices
 // as option ids, so look both up by name. Returns the { key: value } to put on
 // the person, or null if the field or option is missing (the lead still syncs).
-type LeadSource = { key: string; value: unknown; labels: Record<string, string> };
-
-async function resolveLeadSource(token: string): Promise<LeadSource | null> {
+async function resolveLeadSource(token: string): Promise<{ key: string; value: unknown } | null> {
   const fields = (await pd(token, "GET", "/personFields?limit=500")) || [];
   const field = fields.find((f: any) => LEAD_SOURCE_FIELD.test(f.name));
   if (!field) {
@@ -96,25 +94,9 @@ async function resolveLeadSource(token: string): Promise<LeadSource | null> {
       console.warn('"Leads source" has no "facebook ads" option; skipping it');
       return null;
     }
-    const labels: Record<string, string> = {};
-    for (const o of field.options || []) labels[String(o.id)] = o.label;
-    return { key: field.key, value: field.field_type === "set" ? String(option.id) : option.id, labels };
+    return { key: field.key, value: field.field_type === "set" ? String(option.id) : option.id };
   }
-  return { key: field.key, value: "facebook ads", labels: {} };
-}
-
-// What Pipedrive actually holds in Leads source, as readable text. Read back
-// after saving so the result can be checked here without opening Pipedrive.
-async function readLeadSource(token: string, personId: number, ls: LeadSource | null): Promise<string> {
-  if (!ls) return "not set: field or option not found in Pipedrive";
-  try {
-    const person = await pd(token, "GET", `/persons/${personId}`);
-    const raw = person?.[ls.key];
-    if (isBlank(raw)) return "empty";
-    return String(raw).split(",").map((id) => ls.labels[id.trim()] ?? id.trim()).join(", ");
-  } catch (err) {
-    return `couldn't read back: ${err instanceof Error ? err.message : String(err)}`.slice(0, 300);
-  }
+  return { key: field.key, value: "facebook ads" };
 }
 
 function isBlank(v: unknown): boolean {
@@ -256,16 +238,10 @@ Deno.serve(async (req) => {
       }
     }
 
-    // Separate update: if the column hasn't been added yet this fails on its
-    // own and never stops synced_at being written below.
-    const leadSourceSeen = await readLeadSource(token, personId!, leadSource);
-    const { error: lsErr } = await db.from("leads").update({ pipedrive_lead_source: leadSourceSeen }).eq("id", leadId);
-    if (lsErr) console.warn("Couldn't record pipedrive_lead_source:", lsErr.message);
-
     await db.from("leads")
       .update({ synced_at: new Date().toISOString(), sync_error: null, pipedrive_claimed_at: null })
       .eq("id", leadId);
-    return json({ success: true, person_id: personId, deal_id: dealId, lead_source: leadSourceSeen });
+    return json({ success: true, person_id: personId, deal_id: dealId });
   } catch (err) {
     return fail(err);
   }
