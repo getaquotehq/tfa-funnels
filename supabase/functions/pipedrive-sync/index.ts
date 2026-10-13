@@ -4,7 +4,8 @@ import { createClient } from "npm:@supabase/supabase-js@2";
 //
 // Fired by the AFTER INSERT trigger on `leads` (see the
 // 20261001000000_pipedrive_sync.sql migration) with { id }. For that lead we:
-//   1. find or create the Person (matched on email),
+//   1. find or create the Person (matched on email), with Leads source set
+//      to "facebook ads",
 //   2. create a Deal in the "Lead In" stage, owned by the "Admin" user,
 //   3. pin a note with every answer from the survey to the deal,
 //   4. attach the uploaded bill (if any) to the deal,
@@ -20,6 +21,9 @@ const PIPELINE_NAME = /lead\s*in/i; // falls back to pipeline 1
 const FALLBACK_PIPELINE_ID = 1;
 const STAGE_NAME = /^\s*lead\s*in\s*$/i; // falls back to the pipeline's first stage
 const OWNER_NAME = /^\s*admin\s*$/i;
+// Person custom field "Leads source", set to "facebook ads" on every lead.
+const LEAD_SOURCE_FIELD = /^\s*leads?\s*source\s*$/i;
+const LEAD_SOURCE_VALUE = /^\s*facebook\s*ads\s*$/i;
 const BILL_BUCKET = "bills";
 
 const db = createClient(
@@ -72,6 +76,31 @@ async function resolveTargets(token: string) {
   if (!owner) console.warn('No active Pipedrive user named "Admin"; deal owner defaults to the API token owner');
 
   return { pipelineId: pipeline.id, stageId: stage.id, ownerId: owner?.id as number | undefined };
+}
+
+// Pipedrive keys custom fields by a generated hash and stores dropdown choices
+// as option ids, so look both up by name. Returns the { key: value } to put on
+// the person, or null if the field or option is missing (the lead still syncs).
+async function resolveLeadSource(token: string): Promise<{ key: string; value: unknown } | null> {
+  const fields = (await pd(token, "GET", "/personFields?limit=500")) || [];
+  const field = fields.find((f: any) => LEAD_SOURCE_FIELD.test(f.name));
+  if (!field) {
+    console.warn('No Person field named "Leads source" in Pipedrive; skipping it');
+    return null;
+  }
+  if (field.field_type === "enum" || field.field_type === "set") {
+    const option = (field.options || []).find((o: any) => LEAD_SOURCE_VALUE.test(o.label));
+    if (!option) {
+      console.warn('"Leads source" has no "facebook ads" option; skipping it');
+      return null;
+    }
+    return { key: field.key, value: field.field_type === "set" ? String(option.id) : option.id };
+  }
+  return { key: field.key, value: "facebook ads" };
+}
+
+function isBlank(v: unknown): boolean {
+  return v === null || v === undefined || String(v).trim() === "";
 }
 
 function noteHtml(row: Record<string, any>): string {
@@ -135,6 +164,10 @@ Deno.serve(async (req) => {
 
   try {
     const { pipelineId, stageId, ownerId } = await resolveTargets(token);
+    const leadSource = await resolveLeadSource(token).catch((err) => {
+      console.warn("Couldn't look up the Leads source field:", err);
+      return null;
+    });
 
     // 1. person: reuse an existing one with the same email
     let personId: number | null = row.pipedrive_person_id;
@@ -149,8 +182,20 @@ Deno.serve(async (req) => {
         email: [{ value: row.email, primary: true, label: "home" }],
         phone: [{ value: row.phone, primary: true, label: "mobile" }],
         ...(ownerId ? { owner_id: ownerId } : {}),
+        ...(leadSource ? { [leadSource.key]: leadSource.value } : {}),
       });
       personId = person.id;
+    } else if (leadSource) {
+      // An existing person: fill Leads source only if it's empty, so a source
+      // someone already recorded isn't overwritten.
+      try {
+        const person = await pd(token, "GET", `/persons/${personId}`);
+        if (isBlank(person?.[leadSource.key])) {
+          await pd(token, "PUT", `/persons/${personId}`, { [leadSource.key]: leadSource.value });
+        }
+      } catch (err) {
+        console.warn(`Couldn't set Leads source on person ${personId}:`, err);
+      }
     }
     await db.from("leads").update({ pipedrive_person_id: personId }).eq("id", leadId);
 
